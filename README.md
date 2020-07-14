@@ -1,4 +1,4 @@
-# AngularPwa
+# Angular Pwa Starter Template with caching  feature
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 
@@ -13,6 +13,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`ng build --prod
+http-server -p 8080 -c-1 dist/AngularPwa`
+
+With the server running, you can point your browser at http://localhost:8080/. Your application should load normally.
+
+Tip: When testing Angular service workers, it's a good idea to use an incognito or private window in your browser to ensure the service worker doesn't end up reading from a previous leftover state, which can cause unexpected behavior.
 
 ## Running unit tests
 

@@ -1,4 +1,24 @@
 
-<mat-toolbar>
+<mat-toolbar color="primary">
   <span>Angular PWA app</span>
+  <span class="example-spacer"></span>
+  <span *ngIf="offline">offline</span>
 </mat-toolbar>
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="center" >
+  <mat-card class="example-card" fxFlex="300px" *ngFor="let photos of photosList">
+    <mat-card-header>
+      <mat-card-title>Photo {{photos.id}}</mat-card-title>
+      <mat-card-subtitle>Album {{photos.albumId}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{photos.url}}" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+       {{photos.title}}
+      </p>
+    </mat-card-content>
+    
+  </mat-card>
+
+  
+</div>

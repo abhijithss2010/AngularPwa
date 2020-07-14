@@ -17,6 +17,8 @@ import {
   MatDividerModule,
   MatProgressSpinnerModule,
 } from "@angular/material";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +35,8 @@ import {
     MatDividerModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],

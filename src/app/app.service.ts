@@ -11,4 +11,8 @@ export class AppService {
   getPhotos(albumId: number) {
     return this.http.get(`${this.baseUrl}photos?albumId=${albumId}`);
   }
+
+  getAlbums() {
+    return this.http.get(`${this.baseUrl}albums`);
+  }
 }

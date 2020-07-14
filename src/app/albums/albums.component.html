@@ -1,0 +1,9 @@
+<mat-list>
+  <mat-list-item
+    *ngFor="let albums of albumsList"
+    (click)="selectedAlbumId(albums.id)"
+  >
+    <mat-icon matListIcon>folder</mat-icon>
+    {{ albums.id }} {{ albums.title }}
+  </mat-list-item>
+</mat-list>

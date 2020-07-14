@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -16,12 +16,18 @@ import {
   MatTableModule,
   MatDividerModule,
   MatProgressSpinnerModule,
+  MatListModule
 } from "@angular/material";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { RequestCache } from './cache/request-cache.service';
+import { CachingInterceptor } from './cache/caching-interceptor.service';
+import { PhotosComponent } from './photos/photos/photos.component';
+import { AlbumsComponent } from './albums/albums.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PhotosComponent, AlbumsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,9 +42,10 @@ import { environment } from '../environments/environment';
     MatProgressSpinnerModule,
     AppRoutingModule,
     HttpClientModule,
+    MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

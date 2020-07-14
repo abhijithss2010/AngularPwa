@@ -1,30 +1,19 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { AppService } from "./app.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
-  private subscription: Subscription;
-  public photosList = [];
+export class AppComponent {
   offline: boolean;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private router: Router) {
     window.addEventListener("online", this.onNetworkStatusChange.bind(this));
     window.addEventListener("offline", this.onNetworkStatusChange.bind(this));
-  }
-
-  ngOnInit(): void {
-    this.appService.getPhotos(1).subscribe((res: any[]) => {
-      this.photosList = res;
-    });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   onNetworkStatusChange() {
